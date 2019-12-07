@@ -2,11 +2,7 @@ import React from 'react';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      medicines
-    </div>
-  );
+  return <div className="App">medicines</div>;
 }
 
 export default App;
