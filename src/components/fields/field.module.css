@@ -1,0 +1,12 @@
+.label {
+    display: inline-block;
+    line-height: 1.5;
+    white-space: normal;
+    text-align: left;
+    margin-right: 8px;
+}
+
+div .field {
+    display: flex;
+    align-items: center;
+}
