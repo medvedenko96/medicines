@@ -6,15 +6,15 @@ import styles from './medicines-list.module.css';
 
 const ListItem = ({ id, code, name, price, onDelete, onEdit }) => {
   return (
-    <div className={styles.item}>
+    <div className={styles.item} onDoubleClick={() => onEdit(id)}>
       <div className={styles.content}>
-        <Tooltip placement="bottom" title={code}>
+        <Tooltip placement="bottomLeft" title={code}>
           <div>{code}</div>
         </Tooltip>
-        <Tooltip placement="bottom" title={name}>
+        <Tooltip placement="bottomLeft" title={name}>
           <div>{name}</div>
         </Tooltip>
-        <Tooltip placement="bottom" title={price}>
+        <Tooltip placement="bottomLeft" title={price}>
           <div>{price}</div>
         </Tooltip>
       </div>
