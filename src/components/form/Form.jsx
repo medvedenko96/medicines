@@ -11,14 +11,18 @@ const STEPS = {
   SECOND: 2,
 };
 
-const Form = ({ isOpenForm }) => {
+const Form = ({ isOpenForm, handleCloseForm }) => {
   const [step, setStep] = useState(STEPS.FIRST);
   const next = () => setStep(step + 1);
   const prev = () => setStep(step - 1);
 
   const steps = {
-    [STEPS.FIRST]: <FirstStep next={next} />,
-    [STEPS.SECOND]: <SecondStep prev={prev} />,
+    [STEPS.FIRST]: (
+      <FirstStep onSubmit={next} handleCloseForm={handleCloseForm} />
+    ),
+    [STEPS.SECOND]: (
+      <SecondStep prev={prev} handleCloseForm={handleCloseForm} />
+    ),
   };
 
   return (

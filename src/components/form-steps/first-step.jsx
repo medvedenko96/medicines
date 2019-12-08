@@ -3,9 +3,11 @@ import { Field, reduxForm } from 'redux-form';
 import { Button, Form } from 'antd';
 
 import { Input } from '../fields';
+import validate from './validate';
+
 import styles from './steps.module.css';
 
-const FirstStep = ({ handleSubmit, next }) => {
+const FirstStep = ({ handleSubmit, handleCloseForm }) => {
   return (
     <div>
       <Form onSubmit={handleSubmit}>
@@ -21,8 +23,8 @@ const FirstStep = ({ handleSubmit, next }) => {
           />
         </div>
         <div className={styles.modalControl}>
-          <Button onClick={next}>Cancel</Button>
-          <Button onClick={next}>Next</Button>
+          <Button onClick={handleCloseForm}>Cancel</Button>
+          <Button htmlType="submit">Next</Button>
         </div>
       </Form>
     </div>
@@ -32,4 +34,5 @@ const FirstStep = ({ handleSubmit, next }) => {
 export default reduxForm({
   form: 'form',
   destroyOnUnmount: false,
+  validate,
 })(FirstStep);

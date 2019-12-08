@@ -9,7 +9,7 @@ const Medicines = () => {
   const [isOpenForm, setOpen] = useState(false);
 
   const handleOpenForm = () => setOpen(true);
-  const handleCloseForm = () => setOpen(true);
+  const handleCloseForm = () => setOpen(false);
 
   return (
     <div>

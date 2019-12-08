@@ -3,9 +3,11 @@ import { Field, reduxForm } from 'redux-form';
 import { Button, Form } from 'antd';
 
 import { TextArea } from '../fields';
+import validate from './validate';
+
 import styles from './steps.module.css';
 
-const SecondStep = ({ handleSubmit, prev }) => {
+const SecondStep = ({ handleSubmit, prev, handleCloseForm }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <div className={styles.fields}>
@@ -29,7 +31,7 @@ const SecondStep = ({ handleSubmit, prev }) => {
         />
       </div>
       <div className={styles.modalControl}>
-        <Button onClick={() => {}}>Cancel</Button>
+        <Button onClick={handleCloseForm}>Cancel</Button>
         <Button onClick={prev}>Prev</Button>
         <Button htmlType="submit">Create/Edit</Button>
       </div>
@@ -40,4 +42,5 @@ const SecondStep = ({ handleSubmit, prev }) => {
 export default reduxForm({
   form: 'form',
   destroyOnUnmount: false,
+  validate,
 })(SecondStep);

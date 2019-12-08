@@ -22,19 +22,16 @@ const makeField = (Component, fieldProps) => ({
           <Component {...rest} {...input} children={children} {...fieldProps} />
         </Col>
       </Row>
+      {hasError && (
+        <Row>
+          <Col xs={{ span: 24 }} sm={{ span: 6 }} />
+          <Col xs={{ span: 24 }} sm={{ span: 18 }}>
+            <div className={styles.error}>{meta.error}</div>
+          </Col>
+        </Row>
+      )}
     </div>
   );
 };
 
 export default makeField;
-
-// return (
-//     <Form.Item
-//         validateStatus={hasError ? 'error' : 'success'}
-//         hasFeedback={hasFeedback && hasError}
-//         help={hasError && meta.error}
-//         label={label}
-//     >
-//       <Component {...rest} {...input} children={children} />
-//     </Form.Item>
-// );
