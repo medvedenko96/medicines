@@ -10,6 +10,7 @@ import {
 } from 'redux-firestore';
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import rootReducer from './reducers/rootReducer';
 import firebase from './firebase';
@@ -19,6 +20,7 @@ const store = createStore(
   compose(
     applyMiddleware(thunk.withExtraArgument({ getFirestore })),
     reduxFirestore(firebase),
+    composeWithDevTools(),
   ),
 );
 

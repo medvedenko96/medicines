@@ -1,4 +1,5 @@
 import React from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Button, Form } from 'antd';
@@ -9,7 +10,9 @@ import { COLLECTION_NAME } from '../../constants/main';
 
 import styles from './steps.module.css';
 
-let FirstStep = ({ handleSubmit, handleCloseForm }) => {
+export const FORM_NAME = 'MedicineForm';
+
+const FirstStep = ({ handleSubmit, handleCloseForm }) => {
   return (
     <div>
       <Form onSubmit={handleSubmit}>
@@ -33,18 +36,17 @@ let FirstStep = ({ handleSubmit, handleCloseForm }) => {
   );
 };
 
-FirstStep = reduxForm({
-  form: 'form',
-  destroyOnUnmount: false,
-  validate,
-})(FirstStep);
-
-FirstStep = connect(({ firestore: { ordered } }, { editId }) => ({
-  initialValues:
-    editId &&
-    ordered[COLLECTION_NAME].find(
-      medicine => medicine.id === editId && medicine,
-    ),
-}))(FirstStep);
-
-export default FirstStep;
+export default compose(
+  connect(({ firestore: { ordered } }, { editId }) => ({
+    initialValues:
+      editId &&
+      ordered[COLLECTION_NAME].find(
+        medicine => medicine.id === editId && medicine,
+      ),
+  })),
+  reduxForm({
+    form: FORM_NAME,
+    destroyOnUnmount: false,
+    validate,
+  }),
+)(FirstStep);

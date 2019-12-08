@@ -4,13 +4,14 @@ import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 
 import { COLLECTION_NAME } from '../../constants/main';
-import { deleteMedicine } from '../../actions/medicinesActions';
+import { deleteMedicine } from '../../actions/medicines';
 import ListItem from './list-item';
+import Message from '../message';
 
-const MedicinesList = ({ medicines = [], deleteMedicine, onEdit }) => {
+const MedicinesList = ({ medicinesItems = [], deleteMedicine, onEdit }) => {
   return (
-    <div>
-      {medicines.map(item => (
+    <>
+      {medicinesItems.map(item => (
         <ListItem
           key={item.id}
           {...item}
@@ -18,19 +19,16 @@ const MedicinesList = ({ medicines = [], deleteMedicine, onEdit }) => {
           onEdit={onEdit}
         />
       ))}
-    </div>
+      <Message />
+    </>
   );
 };
 
 const mapStateToProps = ({ firestore: { ordered } }) => ({
-  medicines: ordered[COLLECTION_NAME],
-});
-
-const mapDispatchToProps = dispatch => ({
-  deleteMedicine: id => dispatch(deleteMedicine(id)),
+  medicinesItems: ordered[COLLECTION_NAME],
 });
 
 export default compose(
   firestoreConnect([{ collection: COLLECTION_NAME }]),
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(mapStateToProps, { deleteMedicine }),
 )(MedicinesList);

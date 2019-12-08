@@ -3,36 +3,34 @@ import { Button } from 'antd';
 
 import Form from '../../components/form';
 import MedicinesList from '../../components/medicines-list';
-
 import styles from './medicines.module.css';
 
 const Medicines = () => {
-  const [isOpenForm, setOpen] = useState(false);
+  const [isOpenForm, setOpenForm] = useState(false);
   const [editId, setEditId] = useState(null);
-  const handleOpenForm = () => setOpen(true);
 
+  const onOpenForm = () => setOpenForm(true);
   const onEdit = id => {
     setEditId(id);
-    handleOpenForm();
-  };
-
-  const onCloseForm = () => {
-    setOpen(false);
-    setEditId(null);
+    onOpenForm();
   };
 
   return (
     <div className={styles.medicines}>
       <MedicinesList onEdit={onEdit} />
-      <Form isOpenForm={isOpenForm} onCloseForm={onCloseForm} editId={editId} />
-      <div className={styles.buttonAddMedicines}>
-        <Button
-          onClick={handleOpenForm}
-          type="primary"
-          shape="circle"
-          icon="plus"
-        />
-      </div>
+      <Form
+        isOpenForm={isOpenForm}
+        setOpenForm={setOpenForm}
+        setEditId={setEditId}
+        editId={editId}
+      />
+      <Button
+        onClick={onOpenForm}
+        className={styles.buttonAddMedicines}
+        type="primary"
+        shape="circle"
+        icon="plus"
+      />
     </div>
   );
 };

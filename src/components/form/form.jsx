@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Modal } from 'antd';
+import { destroy } from 'redux-form';
 
-import { createMedicine, updateMedicine } from '../../actions/medicinesActions';
+import { createMedicine, updateMedicine } from '../../actions/medicines';
 import FirstStep from '../form-steps/first-step';
 import SecondStep from '../form-steps/second-step';
+import { FORM_NAME } from '../form-steps/first-step';
 
 import styles from './form.module.css';
 
@@ -15,18 +17,22 @@ const STEPS = {
 
 const Form = ({
   isOpenForm,
-  onCloseForm,
+  setOpenForm,
+  setEditId,
   createMedicine,
   updateMedicine,
   editId,
+  destroy,
 }) => {
   const [step, setStep] = useState(STEPS.FIRST);
   const next = () => setStep(step + 1);
   const prev = () => setStep(step - 1);
 
   const handleCloseForm = () => {
-    onCloseForm();
+    setOpenForm(false);
+    setEditId(null);
     setStep(STEPS.FIRST);
+    destroy(FORM_NAME);
   };
 
   const onSubmit = values => {
@@ -38,8 +44,8 @@ const Form = ({
     [STEPS.FIRST]: (
       <FirstStep
         editId={editId}
-        onSubmit={next}
         handleCloseForm={handleCloseForm}
+        onSubmit={next}
       />
     ),
     [STEPS.SECOND]: (
@@ -61,9 +67,4 @@ const Form = ({
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  createMedicine: medicine => dispatch(createMedicine(medicine)),
-  updateMedicine: (medicine, id) => dispatch(updateMedicine(medicine, id)),
-});
-
-export default connect(null, mapDispatchToProps)(Form);
+export default connect(null, { createMedicine, updateMedicine, destroy })(Form);

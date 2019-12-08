@@ -4,10 +4,11 @@ import { Button, Form } from 'antd';
 
 import { TextArea } from '../fields';
 import validate from './validate';
+import { FORM_NAME } from './first-step';
 
 import styles from './steps.module.css';
 
-let SecondStep = ({ handleSubmit, prev, handleCloseForm }) => {
+const SecondStep = ({ handleSubmit, prev, handleCloseForm }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <div className={styles.fields}>
@@ -40,7 +41,7 @@ let SecondStep = ({ handleSubmit, prev, handleCloseForm }) => {
 };
 
 export default reduxForm({
-  form: 'form',
+  form: FORM_NAME,
   destroyOnUnmount: false,
   validate,
 })(SecondStep);
