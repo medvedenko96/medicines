@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Tooltip, Button } from 'antd';
 
 import styles from './medicines-list.module.css';
@@ -23,6 +24,15 @@ const ListItem = ({ id, code, name, price, onDelete, onEdit }) => {
       </div>
     </div>
   );
+};
+
+ListItem.propTypes = {
+  id: PropTypes.string,
+  code: PropTypes.string,
+  name: PropTypes.string,
+  price: PropTypes.string,
+  onDelete: PropTypes.func,
+  onEdit: PropTypes.func,
 };
 
 export default ListItem;

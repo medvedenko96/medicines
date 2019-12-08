@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
@@ -34,6 +35,11 @@ const FirstStep = ({ handleSubmit, handleCloseForm }) => {
       </Form>
     </div>
   );
+};
+
+FirstStep.propTypes = {
+  handleSubmit: PropTypes.func,
+  handleCloseForm: PropTypes.func,
 };
 
 export default compose(

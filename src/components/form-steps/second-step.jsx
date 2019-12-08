@@ -7,6 +7,7 @@ import validate from './validate';
 import { FORM_NAME } from './first-step';
 
 import styles from './steps.module.css';
+import PropTypes from 'prop-types';
 
 const SecondStep = ({ handleSubmit, prev, handleCloseForm }) => {
   return (
@@ -38,6 +39,12 @@ const SecondStep = ({ handleSubmit, prev, handleCloseForm }) => {
       </div>
     </Form>
   );
+};
+
+SecondStep.propTypes = {
+  handleSubmit: PropTypes.func,
+  handleCloseForm: PropTypes.func,
+  prev: PropTypes.func,
 };
 
 export default reduxForm({

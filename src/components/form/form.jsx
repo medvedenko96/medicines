@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Modal } from 'antd';
 import { destroy } from 'redux-form';
@@ -65,6 +66,16 @@ const Form = ({
       </>
     </Modal>
   );
+};
+
+Form.propTypes = {
+  isOpenForm: PropTypes.bool,
+  setOpenForm: PropTypes.func,
+  setEditId: PropTypes.func,
+  createMedicine: PropTypes.func,
+  updateMedicine: PropTypes.func,
+  editId: PropTypes.string,
+  destroy: PropTypes.func,
 };
 
 export default connect(null, { createMedicine, updateMedicine, destroy })(Form);
