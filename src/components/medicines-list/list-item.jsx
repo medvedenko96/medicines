@@ -3,7 +3,7 @@ import { Tooltip, Button } from 'antd';
 
 import styles from './medicines-list.module.css';
 
-const ListItem = ({ id, code, name, price, handleDeleteMedicine }) => {
+const ListItem = ({ id, code, name, price, onDelete, onEdit }) => {
   return (
     <div className={styles.item}>
       <div className={styles.content}>
@@ -18,8 +18,8 @@ const ListItem = ({ id, code, name, price, handleDeleteMedicine }) => {
         </Tooltip>
       </div>
       <div className={styles.control}>
-        <Button onClick={() => {}}>Edit</Button>
-        <Button onClick={() => handleDeleteMedicine(id)}>Delete</Button>
+        <Button onClick={() => onEdit(id)}>Edit</Button>
+        <Button onClick={() => onDelete(id)}>Delete</Button>
       </div>
     </div>
   );

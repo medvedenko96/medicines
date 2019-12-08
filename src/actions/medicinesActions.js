@@ -1,4 +1,3 @@
-import { CREATE_MEDICINE, GET_MEDICINES } from '../constants/actionTypes';
 import { COLLECTION_NAME } from '../constants/main';
 import { generateId } from '../utils/utils';
 
@@ -12,23 +11,6 @@ export const createMedicine = medicines => {
       .set({
         ...medicines,
         id,
-      })
-      .then(() => {
-        dispatch({ type: CREATE_MEDICINE, medicines });
-      });
-  };
-};
-
-export const getMedicines = () => {
-  return (dispatch, getState, { getFirestore }) => {
-    const firestore = getFirestore();
-
-    firestore
-      .collection(COLLECTION_NAME)
-      .get()
-      .then(querySnapshot => {
-        const data = querySnapshot.docs.map(doc => doc.data());
-        dispatch({ type: GET_MEDICINES, data });
       });
   };
 };
@@ -43,14 +25,15 @@ export const deleteMedicine = id => {
   };
 };
 
-export const updateMedicine = (Medicine, id) => {
+export const updateMedicine = (medicine, id) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     firestore
       .collection(COLLECTION_NAME)
       .doc(id)
       .update({
-        ...Medicine,
+        ...medicine,
+        id,
       });
   };
 };

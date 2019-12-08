@@ -1,35 +1,36 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 
-import { getMedicines, deleteMedicine } from '../../actions/medicinesActions';
+import { COLLECTION_NAME } from '../../constants/main';
+import { deleteMedicine } from '../../actions/medicinesActions';
 import ListItem from './list-item';
 
-const MedicinesList = ({ medicines = [], getMedicines, deleteMedicine }) => {
-  useEffect(() => getMedicines());
-
+const MedicinesList = ({ medicines = [], deleteMedicine, onEdit }) => {
   return (
     <div>
       {medicines.map(item => (
         <ListItem
           key={item.id}
           {...item}
-          handleDeleteMedicine={deleteMedicine}
+          onDelete={deleteMedicine}
+          onEdit={onEdit}
         />
       ))}
     </div>
   );
 };
 
-const mapStateToProps = ({ medicines: { data } }) => ({
-  medicines: data,
+const mapStateToProps = ({ firestore: { ordered } }) => ({
+  medicines: ordered[COLLECTION_NAME],
 });
 
 const mapDispatchToProps = dispatch => ({
-  getMedicines: () => dispatch(getMedicines()),
   deleteMedicine: id => dispatch(deleteMedicine(id)),
 });
 
-export default compose(connect(mapStateToProps, mapDispatchToProps))(
-  MedicinesList,
-);
+export default compose(
+  firestoreConnect([{ collection: COLLECTION_NAME }]),
+  connect(mapStateToProps, mapDispatchToProps),
+)(MedicinesList);
