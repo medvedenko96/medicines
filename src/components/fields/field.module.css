@@ -1,12 +1,8 @@
-.label {
-    display: inline-block;
-    line-height: 1.5;
-    white-space: normal;
-    text-align: left;
-    margin-right: 8px;
+.field {
+  margin-bottom: 20px;
 }
 
-div .field {
+.label {
     display: flex;
     align-items: center;
 }

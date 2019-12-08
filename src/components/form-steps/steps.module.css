@@ -1,0 +1,16 @@
+.fields {
+    min-height: 300px;
+}
+
+.modalControl {
+    display: flex;
+    justify-content: center;
+}
+
+.modalControl button {
+    margin-right: 10px;
+}
+
+.modalControl button:last-child {
+    margin-right: 0;
+}
