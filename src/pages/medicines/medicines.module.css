@@ -1,4 +1,8 @@
-.ButtonAddMedicines {
+.medicines {
+    padding: 20px;
+}
+
+.buttonAddMedicines {
     position: fixed;
     bottom: 25px;
     right: 25px;

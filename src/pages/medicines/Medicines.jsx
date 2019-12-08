@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button } from 'antd';
 
 import Form from '../../components/form';
+import MedicinesList from '../../components/medicines-list';
 
 import styles from './medicines.module.css';
 
@@ -12,10 +13,10 @@ const Medicines = () => {
   const handleCloseForm = () => setOpen(false);
 
   return (
-    <div>
-      <div>Medicines</div>
+    <div className={styles.medicines}>
+      <MedicinesList />
       <Form isOpenForm={isOpenForm} handleCloseForm={handleCloseForm} />
-      <div className={styles.ButtonAddMedicines}>
+      <div className={styles.buttonAddMedicines}>
         <Button
           onClick={handleOpenForm}
           type="primary"

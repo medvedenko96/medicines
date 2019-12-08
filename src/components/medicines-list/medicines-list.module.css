@@ -1,0 +1,63 @@
+.item {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 500px;
+    width: 100%;
+}
+
+.content div {
+    margin-right: 5%;
+    max-width: 30%;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.content div:last-child {
+    margin-right: 0;
+}
+
+.control button {
+    margin-left: 15px;
+}
+
+
+@media all and (max-width: 768px) {
+    .content {
+        max-width: 100%;
+        margin-bottom: 25px;
+    }
+    .control {
+        display: flex;
+        margin: 0 0 0 auto;
+    }
+}
+
+@media all and (max-width: 425px) {
+    .content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .content div {
+        margin: 0;
+        text-align: center;
+        max-width: 99%;
+    }
+
+    .control {
+        margin: 0 auto;
+    }
+}

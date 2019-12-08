@@ -7,7 +7,7 @@ import validate from './validate';
 
 import styles from './steps.module.css';
 
-const SecondStep = ({ handleSubmit, prev, handleCloseForm }) => {
+let SecondStep = ({ handleSubmit, prev, handleCloseForm }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <div className={styles.fields}>
